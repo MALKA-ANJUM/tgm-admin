@@ -1,25 +1,44 @@
-import logo from './logo.svg';
+import React from 'react';
+import { ColorModeContext, useMode } from "./theme";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Routes, Route } from 'react-router-dom'
 import './App.css';
+import Sidebar from './scenes/global/Sidebar';
+import Login from './Login';
+import Topbar from './scenes/global/Topbar';
 
 function App() {
+  const [theme, colorMode] = useMode();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline>
+            <Routes>
+              <Route path='/' element={
+                <HeaderComponent hideSideBar hideTopBar>
+                  <Login />
+                </HeaderComponent>
+              } />
+            </Routes>
+        </CssBaseline>
+        </ThemeProvider>
+        </ColorModeContext.Provider>
     </div>
   );
 }
 
 export default App;
+
+function HeaderComponent({children, hideSideBar= false, hideTopBar=false}){
+  // console.log(hideSideBar);
+   return (
+     <div className='app'>
+       {!hideSideBar && <Sidebar />}
+       <main className='content'>
+           {!hideTopBar && <Topbar />}
+           {children}
+       </main>
+     </div>
+   )
+ }
