@@ -59,7 +59,7 @@ const Sidebar = () => {
         },
       }}
     >
-      <ProSidebar collapsed={isCollapsed}>
+      <ProSidebar collapsed={isCollapsed} position="sticky">
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
           <MenuItem
@@ -177,25 +177,10 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-               <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Services
-            </Typography>
-         
-            <Item
-              title="Details"
-              to="/services"
-              icon={<BarChartOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Registered Services"
-              to="/registerService"
-              icon={<BarChartOutlinedIcon />}
+             <Item
+              title="Assets"
+              to="/assets"
+              icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -206,6 +191,15 @@ const Sidebar = () => {
             >
               Others
             </Typography>
+         
+            
+            <Item
+              title="Services"
+              to="/Service"
+              icon={<BarChartOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Item
               title="Renewal"
               to="/renewal"
